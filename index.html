@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多方搜尋器</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        .h-100 {
+            height: 100vh;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <div class="container vh-100">  
+        <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 text-center">
+                <h1 class=" mb-5 display-3">讀書多方搜尋器</h1>
+                <form id="searchForm" action="" method="get" class="h-100 ">
+                    <div class="row">
+                        <div class="col-12">
+                            <input 
+                            type="text" 
+                            id="searchInput" 
+                            name="query" 
+                            placeholder="請輸入關鍵字" 
+                            class="text-center rounded-pill form-control w-100 mr-2 shadow-lg"
+                            style="height:60px"
+                            required>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-center my-4">
+                        <div class="col-12">
+                            <div class="row justify-content-around">
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('google')">Google</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('baidu')">百度</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('zhihu')">知乎</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('bilibili')">Bilibili</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('youtube')">Youtube</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('wiki')">Wikipedia</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('scholar')">Google Scholar</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('pubmed')">PubMed</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('jstor')">JSTOR</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('eric')">ERIC</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('googleBooks')">Google Books</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('gutenberg')">Project Gutenberg</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('openLibrary')">Open Library</button>
+                                </div>
+                                <div class="col-6 col-sm-4 col-md-3 my-1">
+                                    <button type="button" class="w-100 btn btn-outline-dark rounded-pill" onclick="submitSearch('researchGate')">ResearchGate</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row fixed-bottom">
+            <div class="col-12">
+                <p class="text-center">
+                    <a href="https://bearbei.com">使用我們貝貝讀書軟體</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function submitSearch(engine) {
+            let query = encodeURIComponent(document.getElementById('searchInput').value);
+            let url = '';
+            switch (engine) {
+                case 'google':
+                    url = `https://www.google.com/search?q=${query}`;
+                    break;
+                case 'baidu':
+                    url = `https://www.baidu.com/s?wd=${query}`;
+                    break;
+                case 'zhihu':
+                    url=`https://www.zhihu.com/search?type=content&q=${query}`
+                    break;
+                case 'bilibili':
+                    url=`https://search.bilibili.com/all?keyword=${query}`;
+                case 'youtube':
+                    url = `https://www.youtube.com/results?search_query=${query}`;
+                    break;  
+                case 'wiki':
+                    url = `https://en.wikipedia.org/w/index.php?search=${query}&title=Special:Search`;
+                    break;
+                case 'scholar':
+                    url = `https://scholar.google.com/scholar?q=${query}`;
+                    break;
+                case 'pubmed':
+                    url = `https://pubmed.ncbi.nlm.nih.gov/?term=${query}`;
+                    break;
+                case 'jstor':
+                    url = `https://www.jstor.org/action/doBasicSearch?Query=${query}`;
+                    break;
+                case 'eric':
+                    url = `https://eric.ed.gov/?q=${query}`;
+                    break;
+                case 'googleBooks':
+                    url = `https://books.google.com/books?q=${query}`;
+                    break;
+                case 'gutenberg':
+                    url = `https://www.gutenberg.org/ebooks/search/?query=${query}`;
+                    break;
+                case 'openLibrary':
+                    url = `https://openlibrary.org/search?q=${query}`;
+                    break;
+                case 'researchGate':
+                    url = `https://www.researchgate.net/search/publication?q=${query}`;
+                    break;
+                
+            }
+            if(query == ""){
+                Swal.fire(
+                    {
+                        icon:"error",
+                        title:"請輸入關鍵字",
+                        
+                    }
+                );
+            }else{
+                window.open(url, '_self'); // Opens the search in a new tab
+
+            }
+        }
+    </script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</html>
